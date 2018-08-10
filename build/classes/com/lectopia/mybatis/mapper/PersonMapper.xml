@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lectopia.mybatis.mapper.PersonMapper">
+	<resultMap id="result" type="Person">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+	</resultMap>
+	
+	<!-- <insert id="add" parameterType="Person" useGeneratedKeys="true" keyProperty="list_id">
+		INSERT INTO person (name) VALUES (#{name});
+	</insert>
+	-->
+	<insert id="add" parameterType="Person">
+		INSERT INTO person values (#{id}, #{name})
+	</insert>
+	
+	<select id="getAll" resultMap="result">
+		SELECT * FROM person
+	</select>
+	
+	<select id="getById" resultMap="result">
+		SELECT * FROM person WHERE id=#{id}
+	</select>
+	
+	<update id="modify" parameterType="Person">
+		UPDATE person SET name=#{name} WHERE id=#{id}
+	</update>
+</mapper>
